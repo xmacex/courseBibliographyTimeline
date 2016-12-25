@@ -1,0 +1,42 @@
+#content {
+    font-family: sans;
+}
+
+svg#graph {
+    border: 1px dashed black;
+}
+
+.assignment {
+    fill: pink;
+}
+
+.source {
+    fill: purple;
+    opacity: 0.8;
+}
+
+.submission {
+    fill: orange;
+    opacity: 0.8;
+}
+
+.reference {
+    stroke: orange;
+    z-index: 10;
+    opacity: 0.5;
+}
+
+.highlight {
+    stroke: black;
+    stroke-width: 5;
+}
+
+#tooltip {
+    position: absolute;
+    padding: 3px;
+    font-size: smaller;
+    box-shadow: 3px 3px 5px black;
+    background: white;
+    pointer-events: none;
+    z-index: 10;
+}
