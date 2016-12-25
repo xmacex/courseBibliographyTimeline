@@ -12,6 +12,10 @@ svg#graph {
 
 .source {
     fill: purple;
+    opacity: 0.3;
+}
+
+.source.cited {
     opacity: 0.8;
 }
 
@@ -23,12 +27,13 @@ svg#graph {
 .reference {
     stroke: orange;
     z-index: 10;
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 .highlight {
     stroke: black;
     stroke-width: 5;
+    opacity: 1;
 }
 
 #tooltip {
