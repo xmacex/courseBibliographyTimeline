@@ -42,6 +42,13 @@ var Graph = function() {
     }
 }
 
+// Returns the number of submissions in the assignment of d
+// A dynamic, but a rather inefficient way to do this
+var assignmentSetSize = function(submission, data) {
+    return data.submissions.filter(s => s.assignment == submission.assignment).length;
+}
+
+
 d3.json(dataUrl,
 	// accessor
 	// function(d) {return true},
@@ -104,7 +111,7 @@ d3.json(dataUrl,
 		.enter()
 		.append("line")
 		.attr("class", "reference")
-		.attr("x1", function(d) {return x(data.submissions.indexOf(d.source))})
+	    	.attr("x1", function(d, i) {return x(data.submissions.indexOf(d.source) % assignmentSetSize(d.source, data))})
 	    	.attr("y1", function(d) {return dateScale(parseDate(data.assignments.find(function(l) {return d.source.assignment == l.id}).deadline))})
 		.attr("x2", function(d) {return x(data.sources.indexOf(d.target))})
 	    	.attr("y2", function(d) {return dateScale(parseDate(d.target.readingFor))})
@@ -115,7 +122,7 @@ d3.json(dataUrl,
 		.enter()
 		.append("circle")
 		.attr("class", "submission")
-		.attr("cx", function(d, i) {return x(i)})
+		.attr("cx", function(d, i) {return x(i % assignmentSetSize(d, data))})
 		.attr("cy", function(d) {return dateScale(parseDate(data.assignments.find(function(l) {return l.id == d.assignment}).deadline))})
 		.attr("r", function(d) {return 3 + (d.references.length * 2)})
 
@@ -127,6 +134,7 @@ d3.json(dataUrl,
 		.attr("class", "source")
 		.classed("cited", d => referenceGraph.edges.some(e => e.target == d))
 		.attr("cx", function(d, i) {return x(i)})
+	    	// .attr("cx", function(d, i) {return x(i % assignmentSetSize(d, data))})
 		.attr("cy", function(d) {return dateScale(parseDate(d.readingFor))})
 		.attr("r", d => referenceGraph.edges.filter(e => e.target == d).length + 3)
 		.text(function(d) {return d.author + ": " + d.title})
