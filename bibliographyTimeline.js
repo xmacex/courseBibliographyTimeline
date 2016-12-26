@@ -125,6 +125,16 @@ d3.json(dataUrl,
 		.attr("cx", function(d, i) {return x(i % assignmentSetSize(d, data))})
 		.attr("cy", function(d) {return dateScale(parseDate(data.assignments.find(function(l) {return l.id == d.assignment}).deadline))})
 		.attr("r", function(d) {return 3 + (d.references.length * 2)})
+		.on("mouseover", function(d) {
+		    d3.select(this).classed("highlight", true)
+		    d3.selectAll("line.reference").filter(r => r.source == d).classed("highlight", true)
+		    d3.selectAll("circle.source").filter(s => d.references.some(r => r == s.ref)).classed("highlight", true)
+		})
+		.on("mouseout", function(d) {
+		    d3.select(this).classed("highlight", false)
+		    d3.selectAll("line.reference").filter(r => r.source == d).classed("highlight", false)
+		    d3.selectAll("circle.source").filter(s => d.references.some(r => r == s.ref)).classed("highlight", false)
+		})
 
 	    // draw readings
 	    svg.selectAll("circle.source")
