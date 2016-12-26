@@ -124,7 +124,7 @@ d3.json(dataUrl,
 		.attr("class", "submission")
 		.attr("cx", function(d, i) {return x(i % assignmentSetSize(d, data))})
 		.attr("cy", function(d) {return dateScale(parseDate(data.assignments.find(function(l) {return l.id == d.assignment}).deadline))})
-		.attr("r", function(d) {return 3 + (d.references.length * 2)})
+		.attr("r", function(d) {return 5 + d.references.length})
 		.on("mouseover", function(d) {
 		    d3.select(this).classed("highlight", true)
 		    d3.selectAll("line.reference").filter(r => r.source == d).classed("highlight", true)

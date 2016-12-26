@@ -9,7 +9,7 @@
     <div id="content">
       <h1>Reference network of a Autumn 2016 course</h1>
       <div id="graph" />
-      <script src="bibliographyTimeline.js"></script>
+      <script src="courseBibliographyTimeline.js"></script>
       <h2>Limitations</h2>
       <h3>About data</h3>
       <p>References to following references is not included:
@@ -17,7 +17,7 @@
 	  <li>Optional readings from the syllabus. Some of these items do get referenced by the students.</li>
 	  <li>Academic publications from outside the syllabus</li>
 	  <li>Online sources are not included (see prev.). These include a wide range of things, including Obama's statements on Whitehouse.gov, Facebook's policy documents, Wikipedia, news stories from BusinessInsider, Danish media, Google, Apple and Facebook statements, Zuckerberg's status posts, lecture slides etc.</li>
-	  <li>Chapters of books are not separated, because referencing which the sudents reference is a bit of a drag. This impacts especially Connolly+Hoar 2013 and DeNardis 2014.</li>
+	  <li>Chapters of books are not separated, because checking which chapter the students reference is too much of a drag for me right now. This impacts especially Connolly+Hoar 2013 and DeNardis 2014.</li>
 	</ul>
       </p>
       <p>Further, the data was typed in from a 100 or so PDF
@@ -25,7 +25,21 @@
 	possibly exist from just the typing process.
       </p>
       <h3>Data model</h3>
-      <p>The underlying datamodel is rather confused at the moment</p>
+      <p>The underlying datamodel is rather confused at the moment,
+	with an intermediate bipartite graph, with assignments as keys
+	for joining the two lists.</p>
+      <p>The data model would allow further analysis, and could easily
+	be extended to include further data. Proportion of mandatory
+	readings vs. optional readings vs. outside references comes to
+	mind, at least (requiring more work inputing data from the
+	submissions).
+      </p>
+      <h3>User interface</h3>
+      <p>The source circles overlap, which might make some of the
+	items unavailable for interaction if the canvas
+	(<em>window.innerWidth</em>) is not wide enought. This could be
+	remedied with re-ordering the SVG elements.
+      </p>
     </div>
   </body>
 </html>
